@@ -20,10 +20,10 @@ class Knap extends Objekt{
     text(tekst,lokation.x,lokation.y);
     
     if(cliked){
-      fill(222,200,130);
-      rect(width/2,height/2,width-200,height-200,50);
-      
       if(tekst.equals("Resources")){
+        fill(222,200,130);
+        rect(width/2,height/2,width-200,height-200,50);
+        
         fill(0);
         textSize(30);
         textAlign(LEFT);
@@ -31,6 +31,9 @@ class Knap extends Objekt{
         text("Weed: " + korn, 200,300);
         text("Mead: " + kod, 200,350);
         textAlign(CENTER);
+      }
+      else if(tekst.equals("Build")){
+        select = true;
       }
     }
   }

@@ -4,6 +4,7 @@ class Objekt{
   PVector size;
   PImage billede;
   boolean cliked = false;
+  float frame;
   
   Objekt(float x,float y,float b,float h){
     lokation = new PVector(x,y);
@@ -19,4 +20,9 @@ class Objekt{
       cliked = true;
     }
   }
+  
+  void display(){
+    image(billede,lokation.x,lokation.y,size.x,size.y);
+  }
+  
 }

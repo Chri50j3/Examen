@@ -25,10 +25,4 @@ class Dyr extends Objekt{
       lokation.add(speed);
     }
   }
-  
-  void display(){
-    fill(255);
-    rect(lokation.x,lokation.y,size.x,size.y);
-  }
-
 }
