@@ -6,6 +6,8 @@ class Hus extends Objekt{
     billede = loadImage("hus.png");
     
     tre -= 5;
+    
+    dyrListe.add(new Person(x,y,h,b));
   }
 
   void update(){

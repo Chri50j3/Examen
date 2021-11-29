@@ -2,6 +2,7 @@
 class Dyr extends Objekt{
   PVector speed = new PVector(0,0);
   boolean idele = true; 
+  float topSpeed = 0.2;
   
   Dyr(float x,float y,float b,float h){
     super(x,y,b,h);
@@ -11,18 +12,22 @@ class Dyr extends Objekt{
     super.update();
     if(cliked == false && idele == true){
       if(frameCount % 120 == 0){
-        speed.set(random(-1,1),random(-1,1));
+        speed.set(random(-topSpeed,topSpeed),random(-topSpeed,topSpeed));
         
         if(lokation.x < 50)
-          speed.x=random(0,1);
+          speed.x=random(0,topSpeed);
         else if(lokation.x > width-50)
-          speed.x=random(-1,0);
+          speed.x=random(-topSpeed,0);
         if(lokation.y < 50)
-          speed.y=random(0,1);
+          speed.y=random(0,topSpeed);
         else if(lokation.y > height-50)
-          speed.y=random(-1,0);
+          speed.y=random(-topSpeed,0);
       }
-      lokation.add(speed);
     }
+    lokation.add(speed);
   }
+  
+  void hukTre(){
+  }
+  
 }

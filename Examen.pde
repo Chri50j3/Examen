@@ -5,7 +5,7 @@ ArrayList<Hus> bygninger = new ArrayList<Hus>();
 ArrayList<Tre> trer = new ArrayList<Tre>();
 
 
-boolean select = false;
+boolean select = false, fri = true;
 
 void setup(){
   fullScreen();
@@ -20,7 +20,7 @@ void setup(){
   dyrListe.add(new Ko(400,400,70,70));
   
   for(int i = 0; i < 10; i++){
-    trer.add(new Tre(i*70+35,14*70+35,70,70));
+    trer.add(new Tre(int(random(1,14))*70+35,int(random(1,14))*70+35,70,70));
   }
 
 }
@@ -44,7 +44,7 @@ void draw(){
       break;
   }
   
-  
+  fri = checkFri();
   UI();
 }
 
@@ -67,10 +67,26 @@ void UI(){
   }
   
   if(select){
-    fill(255,200,0,200);
+    if(fri)
+      fill(255,200,0,200);
+    else if (!fri) 
+      fill(255,0,0,200);
     rect(int(mouseX/70)*70+35,int(mouseY/70)*70+35,70,70);
   }
   
+}
+
+boolean checkFri(){
+  
+  for(Hus d: bygninger){
+    if(dist(int(mouseX/70)*70+35,int(mouseY/70)*70+35,d.lokation.x,d.lokation.y)<1)
+      return false;
+  }
+  for(Tre d: trer){
+    if(dist(int(mouseX/70)*70+35,int(mouseY/70)*70+35,d.lokation.x,d.lokation.y)<1)
+      return false;
+  }
+  return true;
 }
 
 void mousePressed(){
@@ -86,9 +102,15 @@ void mousePressed(){
   }
   
   if(select){
-    if(tre>4)
+    if(tre>4 && fri)
       bygninger.add(new Hus(int(mouseX/70)*70+35,int(mouseY/70)*70+35,70,70));
     select = false;
   }
   
+}
+
+void keyPressed(){
+  for(Dyr d: dyrListe){
+    d.hukTre();
+  }
 }

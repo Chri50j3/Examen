@@ -5,8 +5,4 @@ class Ko extends Dyr{
     super(x,y,b,h);
     billede = loadImage("ko.png");
   }
-  
-  void update(){
-    super.update();
-  }
 }
