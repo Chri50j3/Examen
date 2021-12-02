@@ -11,6 +11,10 @@ class Person extends Dyr {
 
   void update() {
     super.update();
+    
+    if(frameCount%500 == 0){
+      kod--;
+    }
 
     if (!idele && !hukker)
       walk();
@@ -22,6 +26,10 @@ class Person extends Dyr {
         idele = true;
       } else
         hukTre.huk();
+    }   
+    if (kod<0){
+      kod = 0;
+      dyrListe.remove(this);
     }
   }
 

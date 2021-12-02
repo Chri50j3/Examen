@@ -8,10 +8,13 @@ class Ko extends Dyr {
 
   void update() {
     super.update();
-    if (frameCount % 300 == 0)
+    if (frameCount % 300 == 0){
       korn--;
-    if (korn<0)
+      kod++;
+    }
+    if (korn<0){
       korn = 0;
-    dyrListe.remove(this);
+      dyrListe.remove(this);
+    }
   }
 }

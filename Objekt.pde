@@ -12,12 +12,14 @@ class Objekt {
   }
 
   void update() {
-    mouseCheck();
+    if(frameCount>frame)
+      mouseCheck();
   }
 
   void mouseCheck() {
     if (abs(mouseX-lokation.x)<size.x/2 && abs(mouseY-lokation.y)<size.y/2 && mousePressed) {
-      cliked = true;
+      cliked = !cliked;
+      frame = frameCount+10;
     }
   }
 

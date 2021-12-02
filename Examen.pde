@@ -1,12 +1,12 @@
 int tre = 10, korn = 10, kod = 5;
 ArrayList<Knap> knapper = new ArrayList<Knap>();
 ArrayList<Dyr> dyrListe = new ArrayList<Dyr>();
-ArrayList<Hus> bygninger = new ArrayList<Hus>();
+ArrayList<Bygning> bygninger = new ArrayList<Bygning>();
 ArrayList<Tre> trer = new ArrayList<Tre>();
 ArrayList<Knap> BuildKnapper = new ArrayList<Knap>();
 
-
 boolean select = false, fri = true;
+String bygningType;
 
 void setup() {
   frameRate(60);
@@ -32,17 +32,17 @@ void draw() {
   baggrund();
 
   for (Dyr d : dyrListe) {
-    int i = trer.size();
+    int i = dyrListe.size();
     d.update();
     d.display();
-    if (i != trer.size())
+    if (i != dyrListe.size())
       break;
   }
-  for (Hus d : bygninger) {
-    int i = trer.size();
+  for (Bygning d : bygninger) {
+    int i = bygninger.size();
     d.update();
     d.display();
-    if (i != trer.size())
+    if (i != bygninger.size())
       break;
   }
   for (Tre d : trer) {
@@ -86,7 +86,7 @@ void UI() {
 
 boolean checkFri() {
 
-  for (Hus d : bygninger) {
+  for (Bygning d : bygninger) {
     if (dist(int(mouseX/70)*70+35, int(mouseY/70)*70+35, d.lokation.x, d.lokation.y)<1)
       return false;
   }
@@ -111,7 +111,13 @@ void mousePressed() {
 
   if (select) {
     if (tre>4 && fri)
-      bygninger.add(new Hus(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
+      if (bygningType.equals("House"))
+        bygninger.add(new Hus(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
+      else if (bygningType.equals("Farm"))
+        bygninger.add(new Farm(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
+      else if (bygningType.equals("Cattle"))
+        bygninger.add(new Cattle(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
+
     select = false;
   }
 }
@@ -121,7 +127,6 @@ void keyPressed() {
     d.hukTre();
   }
 }
-
 
 void buildKeys() {
   BuildKnapper.add(new Knap(250, 200, 70, 70, "House"));

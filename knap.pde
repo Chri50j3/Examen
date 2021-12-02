@@ -26,11 +26,13 @@ class Knap extends Objekt {
         text("Weed: " + korn, 200, 250);
         text("Mead: " + kod, 200, 300);
         textAlign(CENTER);
-      } else if (tekst.equals("Build")) {
+      } 
+      else if (tekst.equals("Build")) {
         for (Knap r : BuildKnapper) {
           r.update();
           r.display();
           if (r.cliked) {
+            bygningType = r.tekst;
             select = true;
             cliked=false;
           }
