@@ -1,6 +1,8 @@
 
 class Dyr extends Objekt {
   PVector speed = new PVector(0, 0);
+  PVector edgeOut = new PVector(width-50, height-50);
+  PVector edgeIn = new PVector(50, 50);
   boolean idele = true; 
   float topSpeed = 0.2;
 
@@ -14,13 +16,13 @@ class Dyr extends Objekt {
       if (frameCount % 120 == 0) {
         speed.set(random(-topSpeed, topSpeed), random(-topSpeed, topSpeed));
 
-        if (lokation.x < 50)
+        if (lokation.x < edgeIn.x)
           speed.x=random(0, topSpeed);
-        else if (lokation.x > width-50)
+        else if (lokation.x > edgeOut.x)
           speed.x=random(-topSpeed, 0);
-        if (lokation.y < 50)
+        if (lokation.y < edgeIn.y)
           speed.y=random(0, topSpeed);
-        else if (lokation.y > height-50)
+        else if (lokation.y > edgeOut.y)
           speed.y=random(-topSpeed, 0);
       }
     }

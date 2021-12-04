@@ -19,7 +19,6 @@ void setup() {
   knapper.add(new Knap(50, 50, 100, 100, "Resources"));
   knapper.add(new Knap(50, 160, 100, 100, "Build"));
   knapper.add(new Knap(50, 270, 100, 100, "Army"));
-  dyrListe.add(new Ko(400, 400, 70, 70));
 
   buildKeys();
 
