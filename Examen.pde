@@ -4,9 +4,14 @@ ArrayList<Dyr> dyrListe = new ArrayList<Dyr>();
 ArrayList<Bygning> bygninger = new ArrayList<Bygning>();
 ArrayList<Tre> trer = new ArrayList<Tre>();
 ArrayList<Knap> BuildKnapper = new ArrayList<Knap>();
+ArrayList<Soldat> soldater = new ArrayList<Soldat>();
 
 boolean select = false, fri = true;
 String bygningType;
+int scene = 1, borgere = 0;
+String byNavn = "Gammelby";
+
+PImage kort,by,slot;
 
 void setup() {
   frameRate(60);
@@ -15,6 +20,17 @@ void setup() {
   rectMode(CENTER);
   textAlign(CENTER);
   imageMode(CENTER);
+  
+  kort = loadImage("kort.png");
+  by = loadImage("By.png");
+  slot = loadImage("Slot.png");
+
+  for(int i = 0; i < 10; i++){
+    soldater.add(new Soldat(random(700,1800),random(100,900),70,70,true));
+  }
+  for(int i = 0; i < 10; i++){
+    soldater.add(new Soldat(random(100,700),random(100,900),70,70,false));
+  }
 
   knapper.add(new Knap(50, 50, 100, 100, "Resources"));
   knapper.add(new Knap(50, 160, 100, 100, "Build"));
@@ -22,89 +38,36 @@ void setup() {
 
   buildKeys();
 
-  for (int i = 0; i < 10; i++) {
-    trer.add(new Tre(int(random(1, 14))*70+35, int(random(1, 14))*70+35, 70, 70));
+  for (int i = 0; i < 20; i++) {
+    trer.add(new Tre(int(random(1, 27))*70+35, int(random(1, 15))*70+35, 70, 70));
   }
 }
 
 void draw() {
-  baggrund();
-
-  for (Dyr d : dyrListe) {
-    int i = dyrListe.size();
-    d.update();
-    d.display();
-    if (i != dyrListe.size())
+  switch(scene){
+    case 1:
+      tegnBy();
       break;
-  }
-  for (Bygning d : bygninger) {
-    int i = bygninger.size();
-    d.update();
-    d.display();
-    if (i != bygninger.size())
+    case 2:
+      tegnKort();
       break;
-  }
-  for (Tre d : trer) {
-    int i = trer.size();
-    d.update();
-    d.display();
-    if (i != trer.size())
+    case 3:
+      tegnBattle();
       break;
+    default:
+      clear();
   }
-
-  fri = checkFri();
-  UI();
-}
-
-void baggrund() {
-  strokeWeight(1);
-  int i = 0;
-  background(45, 122, 66);
-  while (i < width) {
-    line(i, 0, i, height);
-    line(0, i, width, i);
-    i+=70;
-  }
-}
-
-void UI() {
-
-  for (Knap k : knapper) {
-    k.display();
-    k.update();
-  }
-
-  if (select) {
-    if (fri)
-      fill(255, 200, 0, 200);
-    else if (!fri) 
-      fill(255, 0, 0, 200);
-    rect(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70);
-  }
-}
-
-boolean checkFri() {
-
-  for (Bygning d : bygninger) {
-    if (dist(int(mouseX/70)*70+35, int(mouseY/70)*70+35, d.lokation.x, d.lokation.y)<1)
-      return false;
-  }
-  for (Tre d : trer) {
-    if (dist(int(mouseX/70)*70+35, int(mouseY/70)*70+35, d.lokation.x, d.lokation.y)<1)
-      return false;
-  }
-  return true;
 }
 
 void mousePressed() {
   for (Dyr d : dyrListe) {
-    if (d.cliked == true && d.idele == true) {
-      d.cliked = false;
+    if (d.clicked == true && d.idele == true) {
+      d.clicked = false;
     }
   }
   for (Knap k : BuildKnapper) {
-    if (k.cliked == true) {
-      k.cliked = false;
+    if (k.clicked == true) {
+      k.clicked = false;
     }
   }
 
@@ -122,8 +85,16 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  for (Dyr d : dyrListe) {
-    d.hukTre();
+  if(key=='k'){
+    for (Dyr d : dyrListe) {
+      d.hukTre();
+    }
+  }
+  if(key=='i'){
+    scene++;
+  }
+  if(key=='u'){
+    scene--;
   }
 }
 

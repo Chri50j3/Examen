@@ -12,7 +12,7 @@ class Dyr extends Objekt {
 
   void update() {
     super.update();
-    if (cliked == false && idele == true) {
+    if (clicked == false && idele == true) {
       if (frameCount % 120 == 0) {
         speed.set(random(-topSpeed, topSpeed), random(-topSpeed, topSpeed));
 

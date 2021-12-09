@@ -3,7 +3,7 @@ class Objekt {
   PVector lokation;
   PVector size;
   PImage billede;
-  boolean cliked = false;
+  boolean clicked = false;
   float frame;
 
   Objekt(float x, float y, float b, float h) {
@@ -18,7 +18,7 @@ class Objekt {
 
   void mouseCheck() {
     if (abs(mouseX-lokation.x)<size.x/2 && abs(mouseY-lokation.y)<size.y/2 && mousePressed) {
-      cliked = !cliked;
+      clicked = !clicked;
       frame = frameCount+10;
     }
   }

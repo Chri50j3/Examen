@@ -15,7 +15,7 @@ class Knap extends Objekt {
     textSize(19);
     text(tekst, lokation.x, lokation.y);
 
-    if (cliked) {
+    if (clicked) {
       fill(222, 200, 130);
       rect(300, height/2, 300, height-200, 50);
       if (tekst.equals("Resources")) {        
@@ -31,13 +31,17 @@ class Knap extends Objekt {
         for (Knap r : BuildKnapper) {
           r.update();
           r.display();
-          if (r.cliked) {
+          if (r.clicked) {
             bygningType = r.tekst;
             select = true;
-            cliked=false;
+            clicked=false;
           }
         }
       }
+     else if(tekst.equals("Army")){
+       scene = 2;
+       clicked = false;
+     }
     }
   }
 }
