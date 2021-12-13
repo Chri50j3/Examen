@@ -1,6 +1,7 @@
 
 void tegnKort(){
   fill(0);
+  textSize(25);
   image(kort,width/2,height/2,width,height);
   
   image(by, 1200,500,140,140);
@@ -17,4 +18,13 @@ void tegnKort(){
   rect(200,height/2,300,height-100,10);
   fill(0);
   text("Citizens: "+ borgere,200,200);
+  
+  checkClick();
+}
+
+void checkClick(){
+  if(abs(mouseX-1550)<70 && abs(mouseY-750)<70 && mousePressed){
+    battleStart(10);
+    scene = 3;
+  }
 }

@@ -6,6 +6,8 @@ class Soldat extends Person{
   Soldat(float x, float y, float b, float h,boolean ven_){
     super(x,y,b*3,h*3);
     ven = ven_;
+    if(ven)
+      borgere ++;
     
     if(ven)
       billede = loadImage("SoldatBlå.png"); 

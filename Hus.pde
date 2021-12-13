@@ -5,5 +5,6 @@ class Hus extends Bygning {
     super(x, y, b, h);
     billede = loadImage("hus.png");
     dyrListe.add(new Person(x, y, h, b));
+    dyrListe.add(new Person(x, y, h, b));
   }
 }

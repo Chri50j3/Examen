@@ -10,7 +10,9 @@ boolean select = false, fri = true;
 String bygningType;
 int scene = 1, borgere = 0;
 String byNavn = "Gammelby";
+float rotate = 0;
 
+int sqareX,sqareY;
 PImage kort,by,slot;
 
 void setup() {
@@ -25,13 +27,6 @@ void setup() {
   by = loadImage("By.png");
   slot = loadImage("Slot.png");
 
-  for(int i = 0; i < 10; i++){
-    soldater.add(new Soldat(random(700,1800),random(100,900),70,70,true));
-  }
-  for(int i = 0; i < 10; i++){
-    soldater.add(new Soldat(random(100,700),random(100,900),70,70,false));
-  }
-
   knapper.add(new Knap(50, 50, 100, 100, "Resources"));
   knapper.add(new Knap(50, 160, 100, 100, "Build"));
   knapper.add(new Knap(50, 270, 100, 100, "Army"));
@@ -44,6 +39,7 @@ void setup() {
 }
 
 void draw() {
+  //tegner kun den scene som skal vises, de andre er "på pause"
   switch(scene){
     case 1:
       tegnBy();
@@ -85,16 +81,17 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if(key=='k'){
-    for (Dyr d : dyrListe) {
-      d.hukTre();
-    }
-  }
   if(key=='i'){
     scene++;
   }
   if(key=='u'){
     scene--;
+  }
+  if(key==','){
+    rotate-=PI/2;
+  }
+  if(key=='.'){
+    rotate+=PI/2;
   }
 }
 

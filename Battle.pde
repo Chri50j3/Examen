@@ -1,3 +1,8 @@
+void battleStart(int enemys){
+  for(int i =0;i<enemys;i++){
+    soldater.add(new Soldat(random(0,width/2),random(0,height),70,70,false));
+  }
+}
 
 void tegnBattle(){
   baggrund();

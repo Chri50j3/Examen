@@ -24,7 +24,7 @@ void tegnBy(){
       break;
   }
 
-  fri = checkFri(mouseX,mouseY);
+  fri = checkFri(mouseX,mouseY); // checker om det fælt som du vil bygge i er frit
   UI();
   
   if(frameCount%1000 == 0){
@@ -56,11 +56,24 @@ void UI() {
   }
 
   if (select) {
+    sqareX = int(mouseX/70)*70+35;
+    sqareY = int(mouseY/70)*70+35;
+    
     if (fri)
       fill(255, 200, 0, 200);
     else if (!fri) 
       fill(255, 0, 0, 200);
-    rect(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70);
+    rect(sqareX, sqareY, 70, 70);
+    push();
+    translate(sqareX, sqareY);
+    rotate(rotate);
+    stroke(255,255,255,200);
+    fill(255,255,255,200);
+    strokeWeight(5);
+    line(-20,0,+20,0);
+    triangle(0-25,0,0-15,0-10,0-15,0+10);
+    pop();
+    stroke(0);
   }
 }
 
