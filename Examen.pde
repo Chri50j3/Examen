@@ -1,4 +1,4 @@
-int tre = 10, korn = 10, kod = 5;
+int tre = 100, korn = 10, kod = 5;
 ArrayList<Knap> knapper = new ArrayList<Knap>();
 ArrayList<Dyr> dyrListe = new ArrayList<Dyr>();
 ArrayList<Bygning> bygninger = new ArrayList<Bygning>();
@@ -11,6 +11,7 @@ String bygningType;
 int scene = 1, borgere = 0;
 String byNavn = "Gammelby";
 float rotate = 0;
+int rotateNr = 0;
 
 int sqareX,sqareY;
 PImage kort,by,slot;
@@ -53,6 +54,8 @@ void draw() {
     default:
       clear();
   }
+    text(rotateNr + " : " + rotate/(PI*2),200,20);
+
 }
 
 void mousePressed() {
@@ -93,6 +96,7 @@ void keyPressed() {
   if(key=='.'){
     rotate+=PI/2;
   }
+  rotateNr = int((rotate/2)%(PI*2));
 }
 
 void buildKeys() {
