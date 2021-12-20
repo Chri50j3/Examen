@@ -1,7 +1,6 @@
 
 void tegnBy(){
   baggrund();
-
   for (Dyr d : dyrListe) {
     int i = dyrListe.size();
     d.update();
@@ -41,6 +40,17 @@ void baggrund() {
   strokeWeight(1);
   int i = 0;
   background(45, 122, 66);
+  image(BG,width/2,height/2);
+  fill(45, 122, 66,100);
+  rect(width/2,height/2,width,height);
+  
+  for (Objekt d : jordByg) {
+    int y = jordByg.size();
+    d.update();
+    d.display();
+    if (y != jordByg.size())
+      break;
+  }
   while (i < width) {
     line(i, 0, i, height);
     line(0, i, width, i);
@@ -49,6 +59,9 @@ void baggrund() {
 }
 
 void UI() {
+  fill(45, 122, 66,10);
+  rect(width/2,height/2,width,height);
+  
 
   for (Knap k : knapper) {
     k.display();
@@ -87,5 +100,12 @@ boolean checkFri(float x,float y) {
     if (dist(int(x/70)*70+35, int(y/70)*70+35, d.lokation.x, d.lokation.y)<1)
       return false;
   }
+  for (Objekt d : jordByg) {
+    if(d instanceof Sti)
+      continue;
+    if (dist(int(x/70)*70+35, int(y/70)*70+35, d.lokation.x, d.lokation.y)<1)
+      return false;
+  }
+  
   return true;
 }

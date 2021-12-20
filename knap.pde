@@ -23,8 +23,9 @@ class Knap extends Objekt {
         textSize(30);
         textAlign(LEFT);
         text("Wood: " + tre, 200, 200);
-        text("Weed: " + korn, 200, 250);
+        text("Stone: " + sten, 200, 250);
         text("Meat: " + kod, 200, 300);
+        text("Weed: " + korn, 200, 350);
         textAlign(CENTER);
       } 
       else if (tekst.equals("Build")) {
