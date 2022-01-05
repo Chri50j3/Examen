@@ -19,6 +19,7 @@ class Mur extends Bygning{
       default:
         billede = loadImage("Mur1.png");
     }
+    tre += 5;
     sten -=5;
   } 
 }

@@ -11,7 +11,7 @@ boolean select = false, fri = true;
 String bygningType;
 int scene = 1, borgere = 0;
 String byNavn = "Your town";
-float rotate = 0;
+float rotate = PI*100;
 int rotateNr = 0;
 
 int sqareX,sqareY;
@@ -56,7 +56,6 @@ void draw() {
     default:
       clear();
   }
-
 }
 
 void mousePressed() {
@@ -85,6 +84,8 @@ void mousePressed() {
         jordByg.add(new Farm(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
       else if (bygningType.equals("Cattle"))
         bygninger.add(new Cattle(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
+      else if (bygningType.equals("Mine"))
+        bygninger.add(new Mine(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
 
     select = false;
   }
@@ -103,13 +104,14 @@ void keyPressed() {
   if(key=='.'){
     rotate+=PI/2;
   }
-  rotateNr = round((rotate/(PI*2)*4)%4);
+  rotateNr = round(abs((rotate/(PI*2)*4)%4));
 }
 
 void buildKeys() {
   BuildKnapper.add(new Knap(250, 200, 70, 70, "House"));
   BuildKnapper.add(new Knap(250, 300, 70, 70, "Farm"));
   BuildKnapper.add(new Knap(250, 400, 70, 70, "Cattle"));
-  BuildKnapper.add(new Knap(250, 500, 70, 70, "Gravel"));
-  BuildKnapper.add(new Knap(250, 600, 70, 70, "Wall"));
+  BuildKnapper.add(new Knap(250, 500, 70, 70, "Mine"));
+  BuildKnapper.add(new Knap(250, 600, 70, 70, "Gravel"));
+  BuildKnapper.add(new Knap(250, 700, 70, 70, "Wall"));
 }

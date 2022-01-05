@@ -27,4 +27,7 @@ void checkClick(){
     battleStart(10);
     scene = 3;
   }
+  else if(abs(mouseX-1200)<70 && abs(mouseY-500)<70 && mousePressed){
+    scene = 1;
+  }
 }
