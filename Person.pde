@@ -16,7 +16,7 @@ class Person extends Dyr {
 
   void update() {
     super.update();
-    
+    topSpeed = 12/frameRate;
     if(frameCount%650 == 0){
       kod--;
     }
@@ -24,9 +24,10 @@ class Person extends Dyr {
     if (!idele && !hukker)
       walk();
 
-    if (hukker && frameCount%300 == 0) {
+    if (hukker && frameCount%300 == 0 && hukTreet != null) {
       if (hukTreet.health<1) {
         hukTreet.health--;;
+        hukTreet = null;
         hukker = false;
         idele = true;
         hukTre();
@@ -42,7 +43,6 @@ class Person extends Dyr {
   }
 
   void hukTre() {
-    idele = false;
     float dist = 10000;
     Tre dd = null;
     for (Tre d : trer) {
@@ -53,8 +53,10 @@ class Person extends Dyr {
         dd = d;
       }
     }
-    if(dd != null)
+    if(dd != null){
+      idele = false;
       dd.isHuk = true;
+    }
   }
 
   void walk() {

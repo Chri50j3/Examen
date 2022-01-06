@@ -36,9 +36,6 @@ class Soldat extends Person{
         HP -= int(random(0,2));
       }
     lokation.add(speed);
-    if(HP<=0){
-      soldater.remove(this);
-    }
     
     if(won){
       String tekst = "";
