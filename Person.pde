@@ -9,10 +9,9 @@ class Person extends Dyr {
     billede = loadImage("mand.png");
     
     if(this instanceof Soldat == false){
-      soldater.add(new Soldat(random(width/2,width),random(0,height),70,70,true));
+      borgere ++;
       hukTre();
     }
-
   }
 
   void update() {

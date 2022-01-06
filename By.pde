@@ -27,7 +27,7 @@ void tegnBy() {
   UI();
 
   if (frameCount%1000 == 0) {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 1; i++) {
       float x = int(random(1, 27))*70+35;
       float y = int(random(1, 15))*70+35;
       if (checkFri(x, y))
@@ -38,7 +38,6 @@ void tegnBy() {
 
 void baggrund() {
   strokeWeight(1);
-  int i = 0;
   background(45, 122, 66);
   image(BG, width/2, height/2);
   fill(45, 122, 66, 100);
@@ -52,11 +51,6 @@ void baggrund() {
       if (y != jordByg.size())
         break;
     }
-    while (i < width) {
-      line(i, 0, i, height);
-      line(0, i, width, i);
-      i+=70;
-    }
   }
 }
 
@@ -64,13 +58,14 @@ void UI() {
   fill(45, 122, 66, 10);
   rect(width/2, height/2, width, height);
 
-
-  for (Knap k : knapper) {
-    k.display();
-    k.update();
-  }
-
   if (select) {
+    int i = 0;
+    while (i < width) {
+      line(i, 0, i, height);
+      line(0, i, width, i);
+      i+=70;
+    }
+
     sqareX = int(mouseX/70)*70+35;
     sqareY = int(mouseY/70)*70+35;
 
@@ -89,6 +84,11 @@ void UI() {
     triangle(0-25, 0, 0-15, 0-10, 0-15, 0+10);
     pop();
     stroke(0);
+  }
+
+  for (Knap k : knapper) {
+    k.display();
+    k.update();
   }
 }
 

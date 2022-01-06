@@ -6,8 +6,6 @@ class Soldat extends Person{
   Soldat(float x, float y, float b, float h,boolean ven_){
     super(x,y,b*3,h*3);
     ven = ven_;
-    if(ven)
-      borgere ++;
     
     if(ven)
       billede = loadImage("SoldatBlå.png"); 
@@ -50,6 +48,10 @@ class Soldat extends Person{
         tekst = "You Lost!";
       textSize(200);
       text(tekst,width/2,height/2);
+    }
+    
+    if(won && mousePressed){
+      battleEnd();
     }
     
   }

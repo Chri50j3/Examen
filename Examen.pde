@@ -36,7 +36,7 @@ void setup() {
 
   buildKeys();
 
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < 10; i++) {
     trer.add(new Tre(int(random(1, 27))*70+35, int(random(1, 15))*70+35, 70, 70));
   }
 }
