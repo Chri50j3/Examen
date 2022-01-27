@@ -7,7 +7,7 @@ class Sti extends Objekt{
     super(x, y, b, h);
     billede = loadImage("Sti.png");
     rotate = int(random(0,4));
-    sten -=5;
+    sten -=2;
   }
   
   Sti(float x, float y){

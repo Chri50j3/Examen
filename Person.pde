@@ -38,7 +38,6 @@ class Person extends Dyr {
       kod = 0;
       dyrListe.remove(this);
       borgere--;
-      soldater.remove(0);
     }
   }
 

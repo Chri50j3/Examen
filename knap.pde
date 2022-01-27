@@ -1,10 +1,18 @@
 
 class Knap extends Objekt {
   String tekst;
+  Boolean buildKnap = false;
+  String pris;
 
   Knap(float x, float y, float b, float h, String tekst_) {
     super(x, y, b, h);
     tekst = tekst_;
+  }
+  Knap(float x, float y, float b, float h, String tekst_, boolean buildKnap_, String pris_) {
+    super(x, y, b, h);
+    tekst = tekst_;
+    buildKnap = buildKnap_;
+    pris = pris_;
   }
 
   void display() {
@@ -13,22 +21,22 @@ class Knap extends Objekt {
     rect(lokation.x, lokation.y, size.x, size.y, 10);
     fill(0);
     textSize(19);
-    text(tekst, lokation.x, lokation.y);
+    text(tekst, lokation.x, lokation.y+5);
+
+    if (buildKnap) {
+      text("Costes " + pris, lokation.x+115, lokation.y+5);
+    }
 
     if (clicked) {
+      if (tekst.equals("Resources")) {        
+        clicked = false;
+        return;
+      } 
+      tutorial = false;
       fill(222, 200, 130);
       rect(300, height/2, 300, height-200, 50);
-      if (tekst.equals("Resources")) {        
-        fill(0);
-        textSize(30);
-        textAlign(LEFT);
-        text("Wood: " + tre, 200, 200);
-        text("Stone: " + sten, 200, 250);
-        text("Meat: " + kod, 200, 300);
-        text("Weed: " + korn, 200, 350);
-        textAlign(CENTER);
-      } 
-      else if (tekst.equals("Build")) {
+
+      if (tekst.equals("Build")) {
         for (Knap r : BuildKnapper) {
           r.update();
           r.display();
@@ -38,11 +46,10 @@ class Knap extends Objekt {
             clicked=false;
           }
         }
+      } else if (tekst.equals("Army")) {
+        scene = 2;
+        clicked = false;
       }
-     else if(tekst.equals("Army")){
-       scene = 2;
-       clicked = false;
-     }
     }
   }
 }

@@ -85,10 +85,28 @@ void UI() {
     pop();
     stroke(0);
   }
+  
+  fill(255, 200, 0, 200);
+  rect(365,63,450,35);
+  fill(0);
+  textSize(20);
+  textAlign(LEFT);
+  text("Wood: " + tre + " |"+"Stone: " + sten+ " |"+"Meat: " + kod+ " |"+"Weed: " + korn, 185, 70);
+  textAlign(CENTER);
 
   for (Knap k : knapper) {
     k.display();
     k.update();
+  }
+
+  if (tutorial) {
+    fill(255, 200, 0);
+    noStroke();
+    triangle(150, 160, 200, 120, 200, 200);
+    rect(225, 160, 50, 35);
+    stroke(0);
+    fill(255);
+    text("Build a house, a farm, and cattle", 400, 165);
   }
 }
 

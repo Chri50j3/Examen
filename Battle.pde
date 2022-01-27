@@ -13,7 +13,8 @@ void tegnBattle() {
   for (Soldat r : soldater) {
     if(r.HP<=0){
       soldater.remove(r);
-    }
+      break;
+    }  
   }
   
   for (Soldat r : soldater) {
