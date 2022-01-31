@@ -14,6 +14,7 @@ class Sti extends Objekt{
     super(x, y, 70, 70);
     billede = loadImage("Sti.png");
     rotate = int(random(0,4));
+    sten -=2;
   }
   
   void display(){

@@ -17,9 +17,14 @@ void tegnKort(){
   stroke(0);
   rect(200,height/2,300,height-100,10);
   fill(0);
-  text("Citizens: "+ borgere,200,200);
+  text("Your Soldiers: "+ borgere,200,150);
+  line(100,200,300,200);
+  text("Castle: 10 soldiers",200,300);
   
   checkClick();
+  
+  fill(255,150,0,5);
+  rect(width/2,height/2,width,height);
 }
 
 void checkClick(){

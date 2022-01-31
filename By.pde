@@ -61,9 +61,18 @@ void UI() {
   if (select) {
     int i = 0;
     while (i < width) {
-      line(i, 0, i, height);
-      line(0, i, width, i);
-      i+=70;
+      int y = 0;
+      while(y < height){
+      push();
+      rectMode(CORNER);
+      fill(0,10);
+      noStroke();
+      rect(i,y,70,70);
+      rect(i+70,y+70,70,70);
+      y+=140;
+      pop();
+      }
+      i+=140;
     }
 
     sqareX = int(mouseX/70)*70+35;

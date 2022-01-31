@@ -71,10 +71,10 @@ void mousePressed() {
   }
 
   if (select) {
-    if (fri && sten>4){
+    if (fri && sten>1){
       if (bygningType.equals("Gravel"))
         jordByg.add(new Sti(int(mouseX/70)*70+35, int(mouseY/70)*70+35));
-      if (bygningType.equals("Wall"))
+      if (bygningType.equals("Wall") && sten>4)
         bygninger.add(new Mur(int(mouseX/70)*70+35, int(mouseY/70)*70+35,70,70));
     }
     if (tre>4 && fri)
@@ -112,6 +112,6 @@ void buildKeys() {
   BuildKnapper.add(new Knap(220, 300, 70, 70, "Farm",true,"5 Wood"));
   BuildKnapper.add(new Knap(220, 400, 70, 70, "Cattle",true,"5 Wood"));
   BuildKnapper.add(new Knap(220, 500, 70, 70, "Mine",true,"5 Wood"));
-  BuildKnapper.add(new Knap(220, 600, 70, 70, "Gravel",true,"5 Stone"));
+  BuildKnapper.add(new Knap(220, 600, 70, 70, "Gravel",true,"2 Stone"));
   BuildKnapper.add(new Knap(220, 700, 70, 70, "Wall",true,"5 Stone"));
 }
