@@ -27,12 +27,10 @@ void tegnBy() {
   UI();
 
   if (frameCount%1000 == 0) {
-    for (int i = 0; i < 1; i++) {
       float x = int(random(1, 27))*70+35;
       float y = int(random(1, 15))*70+35;
       if (checkFri(x, y))
         trer.add(new Tre(x, y, 70, 70));
-    }
   }
 }
 
@@ -93,7 +91,13 @@ void UI() {
     triangle(0-25, 0, 0-15, 0-10, 0-15, 0+10);
     pop();
     stroke(0);
-  }
+
+  fill(255, 200, 0, 200);
+  rect(width-150,height-75,200,75,10);
+  fill(0);
+  text("Rotate with , and .",width-150,height-70);
+
+}
   
   fill(255, 200, 0, 200);
   rect(365,63,450,35);

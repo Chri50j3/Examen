@@ -10,19 +10,14 @@ void battleStart(int enemys) {
 
 void tegnBattle() {
   baggrund();
+
   for (Soldat r : soldater) {
-    if(r.HP<=0){
-      soldater.remove(r);
-      break;
-    }  
-  }
-  
-  for (Soldat r : soldater) {
-    int i = soldater.size();
     r.update();
     r.display();
-    if (i != soldater.size())
+    if (r.HP<=0) {
+      soldater.remove(r);
       break;
+    }
   }
 }
 

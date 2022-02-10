@@ -2,16 +2,20 @@
 class Soldat extends Person{
   boolean ven;
   int HP = 100;
+  int hpVarians;
   
   Soldat(float x, float y, float b, float h,boolean ven_){
     super(x,y,b*3,h*3);
     ven = ven_;
     
-    if(ven)
+    if(ven){
       billede = loadImage("SoldatBlå.png"); 
-    else
+      hpVarians = 2;
+    }
+    else{
       billede = loadImage("SoldatRød.png"); 
-      
+      hpVarians = 3;
+    }
     idele=false;
     topSpeed = topSpeed*10;
   }
@@ -33,7 +37,7 @@ class Soldat extends Person{
         speed.setMag(topSpeed);
       } else if(!won) {
         speed.setMag(0);
-        HP -= int(random(0,2));
+        HP -= int(random(0,hpVarians));
       }
     lokation.add(speed);
     
@@ -45,6 +49,11 @@ class Soldat extends Person{
         tekst = "You Lost!";
       textSize(200);
       text(tekst,width/2,height/2);
+      
+      tre += int(random(0,3));
+      kod += int(random(0,3));
+      sten += int(random(0,3));
+      korn += int(random(0,3));
     }
     
     if(won && mousePressed){

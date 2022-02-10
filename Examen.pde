@@ -9,7 +9,7 @@ ArrayList<Soldat> soldater = new ArrayList<Soldat>();
 
 boolean select = false, fri = true, tutorial = true;
 String bygningType;
-int scene = 1, borgere = 0;
+int scene = 1, borgere = 0, lastScene = 1;;
 String byNavn = "Your town";
 float rotate = PI*100;
 int rotateNr = 0;
@@ -55,6 +55,9 @@ void draw() {
       break;
     default:
       clear();
+      fill(200);
+      textSize(70);
+      text("GAME PAUSED",width/2,height/2);
   }
 }
 
@@ -92,12 +95,16 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if(key=='i'){
-    scene++;
+  if(keyCode==ESC){
+    if(scene != 0){
+      lastScene = scene;
+      scene = 0;
+    }
+    else if(scene==0){
+      scene = lastScene;
+    }
   }
-  if(key=='u'){
-    scene--;
-  }
+  
   if(key==','){
     rotate-=PI/2;
   }
@@ -105,6 +112,9 @@ void keyPressed() {
     rotate+=PI/2;
   }
   rotateNr = round(abs((rotate/(PI*2)*4)%4));
+  
+  key=0;
+  
 }
 
 void buildKeys() {
