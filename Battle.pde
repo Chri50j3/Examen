@@ -12,12 +12,14 @@ void tegnBattle() {
   baggrund();
 
   for (Soldat r : soldater) {
+    int i = soldater.size();
     r.update();
     r.display();
     if (r.HP<=0) {
       soldater.remove(r);
-      break;
     }
+    if(i != soldater.size())
+      break;
   }
 }
 

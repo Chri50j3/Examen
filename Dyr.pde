@@ -28,6 +28,14 @@ class Dyr extends Objekt {
     }
     lokation.add(speed);
   }
+  
+  void display() {
+    push();
+    translate(lokation.x,lokation.y);
+    rotate(PI+speed.heading());
+    super.display();
+    pop();
+  }
 
   void hukTre() {
   }

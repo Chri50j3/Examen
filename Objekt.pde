@@ -24,6 +24,10 @@ class Objekt {
   }
 
   void display() {
+    if(this instanceof Dyr){
+      image(billede, 0,0, size.x, size.y);
+    }
+    else
     image(billede, lokation.x, lokation.y, size.x, size.y);
   }
 }
