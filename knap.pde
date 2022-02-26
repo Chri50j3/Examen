@@ -14,6 +14,12 @@ class Knap extends Objekt {
     buildKnap = buildKnap_;
     pris = pris_;
   }
+  Knap(float x, float y, float b, float h, String tekst_, boolean buildKnap_) {
+    super(x, y, b, h);
+    tekst = tekst_;
+    buildKnap = buildKnap_;
+    pris = "5 Wood";
+  }
 
   void display() {
     strokeWeight(3);

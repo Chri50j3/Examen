@@ -9,13 +9,13 @@ ArrayList<Soldat> soldater = new ArrayList<Soldat>();
 
 boolean select = false, fri = true, tutorial = true;
 String bygningType;
-int scene = 1, borgere = 0, lastScene = 1;;
+int scene = 1, borgere = 0, lastScene = 1;
 String byNavn = "Your town";
 float rotate = PI*100;
-int rotateNr = 0;
+int rotateIndex = 0;
 
-int sqareX,sqareY;
-PImage kort,by,slot,BG;
+int sqareX, sqareY;
+PImage kort, by, slot, BG, mouse;
 
 void setup() {
   frameRate(120);
@@ -24,11 +24,12 @@ void setup() {
   rectMode(CENTER);
   textAlign(CENTER);
   imageMode(CENTER);
-  
+
   kort = loadImage("kort.png");
   by = loadImage("By.png");
   slot = loadImage("Slot.png");
   BG = loadImage("BG.png");
+  mouse = loadImage("mus.png");
 
   knapper.add(new Knap(80, 70, 120, 80, "Resources"));
   knapper.add(new Knap(80, 160, 120, 80, "Build"));
@@ -42,31 +43,29 @@ void setup() {
 }
 
 void draw() {
-  //tegner kun den scene som skal vises, de andre er "på pause"
-  switch(scene){
-    case 1:
-      tegnBy();
-      break;
-    case 2:
-      tegnKort();
-      break;
-    case 3:
-      tegnBattle();
-      break;
-    default:
-      clear();
-      fill(200);
-      textSize(70);
-      text("GAME PAUSED",width/2,height/2);
+  cursor(mouse, 0, 0);
+  //tegner kun den scene som skal vises, de andre bliver ikke kørt og er dermed "på pause"
+  switch(scene) {
+  case 1:
+    tegnBy();
+    break;
+  case 2:
+    tegnKort();
+    break;
+  case 3:
+    tegnBattle();
+    break;
+  default:
+    clear();
+    fill(200);
+    textSize(70);
+    text("GAME PAUSED", width/2, height/2);
+    textSize(50);
+    text("Press Alt+F4 to close game", width/2, height/2+220);
   }
 }
 
 void mousePressed() {
-  for (Dyr d : dyrListe) {
-    if (d.clicked == true && d.idele == true) {
-      d.clicked = false;
-    }
-  }
   for (Knap k : BuildKnapper) {
     if (k.clicked == true) {
       k.clicked = false;
@@ -74,11 +73,11 @@ void mousePressed() {
   }
 
   if (select) {
-    if (fri && sten>1){
+    if (fri && sten>1) {
       if (bygningType.equals("Gravel"))
         jordByg.add(new Sti(int(mouseX/70)*70+35, int(mouseY/70)*70+35));
       if (bygningType.equals("Wall") && sten>4)
-        bygninger.add(new Mur(int(mouseX/70)*70+35, int(mouseY/70)*70+35,70,70));
+        bygninger.add(new Mur(int(mouseX/70)*70+35, int(mouseY/70)*70+35, 70, 70));
     }
     if (tre>4 && fri)
       if (bygningType.equals("House"))
@@ -95,33 +94,31 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if(keyCode==ESC){
-    if(scene != 0){
+  if (keyCode==ESC) {
+    if (scene != 0) {
       lastScene = scene;
       scene = 0;
-    }
-    else if(scene==0){
+    } else if (scene==0) {
       scene = lastScene;
     }
   }
-  
-  if(key==','){
+
+  if (key==',') {
     rotate-=PI/2;
   }
-  if(key=='.'){
+  if (key=='.') {
     rotate+=PI/2;
   }
-  rotateNr = round(abs((rotate/(PI*2)*4)%4));
-  
-  key=0;
-  
+  rotateIndex = round(abs((rotate/(PI*2)*4)%4)); // laver en vinkel om til en int mellem 0 og 3 så jeg ved hvilket billede der skal bruges under bygningerne
+
+  key=0; // gør så spillet ikke bare lukker ned når man trykker ESC
 }
 
 void buildKeys() {
-  BuildKnapper.add(new Knap(220, 200, 70, 70, "House",true,"5 Wood"));
-  BuildKnapper.add(new Knap(220, 300, 70, 70, "Farm",true,"5 Wood"));
-  BuildKnapper.add(new Knap(220, 400, 70, 70, "Cattle",true,"5 Wood"));
-  BuildKnapper.add(new Knap(220, 500, 70, 70, "Mine",true,"5 Wood"));
-  BuildKnapper.add(new Knap(220, 600, 70, 70, "Gravel",true,"2 Stone"));
-  BuildKnapper.add(new Knap(220, 700, 70, 70, "Wall",true,"5 Stone"));
+  BuildKnapper.add(new Knap(220, 200, 70, 70, "House", true));
+  BuildKnapper.add(new Knap(220, 300, 70, 70, "Farm", true));
+  BuildKnapper.add(new Knap(220, 400, 70, 70, "Cattle", true));
+  BuildKnapper.add(new Knap(220, 500, 70, 70, "Mine", true));
+  BuildKnapper.add(new Knap(220, 600, 70, 70, "Gravel", true, "2 Stone"));
+  BuildKnapper.add(new Knap(220, 700, 70, 70, "Wall", true, "5 Stone"));
 }

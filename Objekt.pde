@@ -12,7 +12,7 @@ class Objekt {
   }
 
   void update() {
-    if(frameCount>frame)
+    if (frameCount>frame) // gør så der er et lille delay mellem at man trykker, så man ikke kommer til at trykke to gange ved en fejl
       mouseCheck();
   }
 
@@ -24,10 +24,9 @@ class Objekt {
   }
 
   void display() {
-    if(this instanceof Dyr){
-      image(billede, 0,0, size.x, size.y);
-    }
-    else
-    image(billede, lokation.x, lokation.y, size.x, size.y);
+    if (this instanceof Dyr) {
+      image(billede, 0, 0, size.x, size.y); // dyr har koordinaterne 0,0 fordi jeg translater til deres koordinater når jeg rotere dem
+    } else
+      image(billede, lokation.x, lokation.y, size.x, size.y);
   }
 }

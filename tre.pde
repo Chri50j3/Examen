@@ -10,7 +10,7 @@ class Tre extends Objekt {
 
   void update() {
     super.update();
-    if(health<0){
+    if (health<0) {
       trer.remove(this);
     }
   }

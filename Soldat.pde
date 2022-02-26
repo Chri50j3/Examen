@@ -23,20 +23,19 @@ class Soldat extends Person {
     float dist = 10000;
     boolean won = true;
     for (Soldat r : soldater) {
-      if (r.ven!=ven) {
+      if (r.ven!=ven) { // finder den fjender, der er tætest på
         won = false;
-        if (dist > dist(lokation.x, lokation.y, r.lokation.x, r.lokation.y)) {
-          dist = dist(lokation.x, lokation.y, r.lokation.x, r.lokation.y);
+        float tempDist = dist(lokation.x, lokation.y, r.lokation.x, r.lokation.y);
+        if (dist > tempDist) {
+          dist = tempDist;
           findVej.set(r.lokation.x, r.lokation.y);
         }
       }
     }
-    if (dist(lokation.x, lokation.y, findVej.x, findVej.y)>20) {
-      speed.set(findVej.x-lokation.x, findVej.y-lokation.y);
-      speed.setMag(topSpeed);
+    if (findVej()) {
     } else if (!won) {
       speed.setMag(0);
-      HP -= int(random(0, hpVarians));
+      HP -= int(random(0, hpVarians)); // fjender tager mere skade end venner, for at gøre det lidt sjovere for spilleren
     }
     lokation.add(speed);
 
@@ -44,10 +43,6 @@ class Soldat extends Person {
       String tekst = "";
       if (ven) {
         tekst = "You Won!";
-        tre += int(random(0, 1));
-        kod += int(random(0, 1));
-        sten += int(random(0, 1));
-        korn += int(random(0, 1));
       } else if (!ven)
         tekst = "You Lost!";
       textSize(200);
@@ -55,7 +50,7 @@ class Soldat extends Person {
     }
 
     if (won && mousePressed) {
-      battleEnd();
+      battleEnd(won);
     }
   }
 }

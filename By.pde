@@ -1,7 +1,7 @@
 
 void tegnBy() {
   baggrund();
-  for (Dyr d : dyrListe) {
+  for (Dyr d : dyrListe) { //bruger polymorfi så jeg kan tegne alle mine dyr og alle mine bygninger, og ikke skal gøre det for hver enkelt klasse
     int i = dyrListe.size();
     d.update();
     d.display();
@@ -23,14 +23,14 @@ void tegnBy() {
       break;
   }
 
-  fri = checkFri(mouseX, mouseY); // checker om det fælt som du vil bygge i er frit
+  fri = checkFri(mouseX, mouseY); // checker om der allerede er en bygning eller træer på det felt, man prøver at bygge på
   UI();
 
-  if (frameCount%1000 == 0) {
-      float x = int(random(1, 27))*70+35;
-      float y = int(random(1, 15))*70+35;
-      if (checkFri(x, y))
-        trer.add(new Tre(x, y, 70, 70));
+  if (frameCount%1000 == 0) { //tilføjer et nyt træ, hvert 1000. frame
+    float x = int(random(1, 27))*70+35;
+    float y = int(random(1, 15))*70+35;
+    if (checkFri(x, y))
+      trer.add(new Tre(x, y, 70, 70));
   }
 }
 
@@ -41,7 +41,7 @@ void baggrund() {
   fill(45, 122, 66, 100);
   rect(width/2, height/2, width, height);
 
-  if (scene == 1) {
+  if (scene == 1) {// hvis den viser byen, så skal den tegne de objekter, der ligger på jorden før den tegner dyrene og bygningerne
     for (Objekt d : jordByg) {
       int y = jordByg.size();
       d.update();
@@ -58,25 +58,25 @@ void UI() {
 
   if (select) {
     int i = 0;
-    while (i < width) {
+    while (i < width) { // tegner en masse gennemsigtige tern, når man skal til at bygge
       int y = 0;
-      while(y < height){
-      push();
-      rectMode(CORNER);
-      fill(0,10);
-      noStroke();
-      rect(i,y,70,70);
-      rect(i+70,y+70,70,70);
-      y+=140;
-      pop();
+      while (y < height) {
+        push();
+        rectMode(CORNER);
+        fill(0, 10);
+        noStroke();
+        rect(i, y, 70, 70);
+        rect(i+70, y+70, 70, 70);
+        y+=140;
+        pop();
       }
       i+=140;
     }
 
-    sqareX = int(mouseX/70)*70+35;
+    sqareX = int(mouseX/70)*70+35; // laver musens koordinaet om til at passe med byens gridd
     sqareY = int(mouseY/70)*70+35;
 
-    if (fri)
+    if (fri) // tegner et fælt, der enden er gult eller rødt, alt efter om man må bygge der eller ej
       fill(255, 200, 0, 200);
     else if (!fri) 
       fill(255, 0, 0, 200);
@@ -92,15 +92,14 @@ void UI() {
     pop();
     stroke(0);
 
-  fill(255, 200, 0, 200);
-  rect(width-150,height-75,200,75,10);
-  fill(0);
-  text("Rotate with , and .",width-150,height-70);
+    fill(255, 200, 0, 200); // textboks der informere om at man kan rotere bygninger
+    rect(width-150, height-75, 200, 75, 10);
+    fill(0);
+    text("Rotate with , and .", width-150, height-70);
+  }
 
-}
-  
-  fill(255, 200, 0, 200);
-  rect(365,63,450,35);
+  fill(255, 200, 0, 200); // viser ens resurcer
+  rect(365, 63, 450, 35);
   fill(0);
   textSize(20);
   textAlign(LEFT);
@@ -123,7 +122,7 @@ void UI() {
   }
 }
 
-boolean checkFri(float x, float y) {
+boolean checkFri(float x, float y) { // ser om x og y ligger 
 
   for (Bygning d : bygninger) {
     if (dist(int(x/70)*70+35, int(y/70)*70+35, d.lokation.x, d.lokation.y)<1)
@@ -134,7 +133,7 @@ boolean checkFri(float x, float y) {
       return false;
   }
   for (Objekt d : jordByg) {
-    if (d instanceof Sti)
+    if (d instanceof Sti) // man kan godt bygge oven på en sti
       continue;
     if (dist(int(x/70)*70+35, int(y/70)*70+35, d.lokation.x, d.lokation.y)<1)
       return false;

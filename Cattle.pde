@@ -5,6 +5,6 @@ class Cattle extends Bygning {
     super(x, y, b, h);
     billede = loadImage("Cattle.png");
 
-    dyrListe.add(new Ko(x, y, h, b));
+    dyrListe.add(new Ko(x, y, h, b)); // når man laver en indhegning, så laver den selv en ko
   }
 }

@@ -14,7 +14,7 @@ class Dyr extends Objekt {
     super.update();
     if (clicked == false && idele == true) {
       if (frameCount % 120 == 0) {
-        speed.set(random(-topSpeed, topSpeed), random(-topSpeed, topSpeed));
+        speed.set(random(-topSpeed, topSpeed), random(-topSpeed, topSpeed)); // hvert 120. fram så går dyr en tilfældig retning, hvis dyret er uden for dets grænser så går det ikke længere den vej
 
         if (lokation.x < edgeIn.x)
           speed.x=random(0, topSpeed);
@@ -28,10 +28,10 @@ class Dyr extends Objekt {
     }
     lokation.add(speed);
   }
-  
-  void display() {
+
+  void display() { // rotere billedet så det passer til den retning som dyret gå
     push();
-    translate(lokation.x,lokation.y);
+    translate(lokation.x, lokation.y);
     rotate(PI+speed.heading());
     super.display();
     pop();
