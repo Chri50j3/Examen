@@ -5,6 +5,7 @@ class Dyr extends Objekt {
   PVector edgeIn = new PVector(50, 50);
   boolean idele = true; 
   float topSpeed = 0.2;
+  int updateFrame = int(random(100,150));
 
   Dyr(float x, float y, float b, float h) {
     super(x, y, b, h);
@@ -13,7 +14,7 @@ class Dyr extends Objekt {
   void update() {
     super.update();
     if (clicked == false && idele == true) {
-      if (frameCount % 120 == 0) {
+      if (frameCount % updateFrame == 0) {
         speed.set(random(-topSpeed, topSpeed), random(-topSpeed, topSpeed)); // hvert 120. fram så går dyr en tilfældig retning, hvis dyret er uden for dets grænser så går det ikke længere den vej
 
         if (lokation.x < edgeIn.x)
